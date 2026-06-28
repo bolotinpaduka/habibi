@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>for you</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: #f5f5f5;
+    background: black;
+}
+
+/* BACKGROUND */
+.bg {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: url('1782664083178.jpg') center/cover no-repeat;
+    filter: blur(4px) brightness(0.4);
+    transform: scale(1.1);
+    z-index: -1;
+}
+
+/* INTRO */
+.intro {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#typing {
+    font-size: 1.8em;
+    border-right: 2px solid #aaa;
+}
+
+/* CONTAINER */
+.container {
+    max-width: 700px;
+    margin: auto;
+    padding: 40px 15px;
+}
+
+/* SECTIONS */
+section {
+    margin-bottom: 60px;
+    opacity: 0;
+    transform: translateY(40px);
+    filter: blur(8px);
+    transition: all 1s ease;
+}
+
+section.show {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+}
+
+h2 {
+    margin-bottom: 12px;
+    color: #ddd;
+}
+
+/* CARD */
+.card {
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(8px);
+    padding: 20px;
+    border-radius: 14px;
+    line-height: 1.7;
+}
+
+/* IMAGE */
+.image {
+    position: relative;
+    margin-top: 12px;
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    border-radius: 14px;
+}
+
+.image img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    opacity: 0;
+    filter: blur(6px);
+    transform: scale(1.1);
+    transition: opacity 1.5s ease, filter 1.5s ease;
+}
+
+.image img.active {
+    opacity: 0.9;
+    filter: blur(0);
+    animation: slowZoom 18s linear forwards, pulse 6s ease-in-out infinite;
+}
+
+@keyframes slowZoom {
+    from { transform: scale(1.1); }
+    to { transform: scale(1.25); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1.25); }
+    50% { transform: scale(1.27); }
+    100% { transform: scale(1.25); }
+}
+
+/* APOLOGY BUTTON */
+.apology-btn {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 18px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+}
+.apology {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 1.2s ease;
+}
+
+/* OPEN STATE */
+.apology.show {
+    max-height: 420px;   /* key change */
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* SCROLL PANE INSIDE */
+.apology .card {
+    max-height: 360px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+/* optional scrollbar styling */
+.apology .card::-webkit-scrollbar {
+    width: 4px;
+}
+
+.apology .card::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.2);
+    border-radius: 10px;
+}
+/* FINAL MESSAGE */
+.final-message {
+    text-align: center;
+    font-size: 1.1em;
+    margin-top: 80px;
+    opacity: 0;
+    transition: 2s ease;
+}
+
+.final-message.show {
+    opacity: 1;
+}
+
+/* MUSIC BUTTON */
+#music-btn {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    background: rgba(255,255,255,0.1);
+    border: none;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+footer {
+    text-align: center;
+    color: #777;
+    padding: 25px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg"></div>
+
+<audio id="bg-music" loop>
+    <source src="Rethabile_Khumalo_-_Egalile.mp3" type="audio/mpeg">
+</audio>
+
+<button id="music-btn" onclick="toggleMusic()">play</button>
+
+<div class="intro">
+    <div id="typing"></div>
+</div>
+
+<div class="container" id="main" style="display:none;">
+
+<section>
+<h2>what I understand now</h2>
+<div class="card">
+I’ve been thinking a lot… and for the first time,
+I’m not avoiding my part in everything.
+</div>
+
+<div class="image">
+<img src="1782664143028.jpg" class="active">
+<img src="1782664147227.jpg">
+<img src="1782664140046.jpg">
+</div>
+</section>
+
+<section>
+<h2>you</h2>
+<div class="card">
+You’re strong in a way that isn’t loud.
+And you deserve to be seen.
+</div>
+
+<div class="image">
+<img src="1782664278125.jpg" class="active">
+<img src="1782664337360.jpg">
+<img src="1782664340238.jpg">
+</div>
+</section>
+
+<section>
+<h2>things I noticed</h2>
+<div class="card">
+• You carry more than people realize<br>
+• You notice effort<br>
+• You just needed support
+</div>
+
+<div class="image">
+<img src="1782664350453.jpg" class="active">
+<img src="1782664108550.jpg">
+<img src="1782664150815.jpg">
+</div>
+</section>
+
+<section>
+<h2>no pressure</h2>
+<div class="card">
+I’m not expecting anything.<br><br>
+I just needed to say this properly.
+</div>
+
+<div class="image">
+<img src="1782664356604.jpg" class="active">
+<img src="1782664083178.jpg">
+<img src="1782664101966.jpg">
+</div>
+
+<button class="apology-btn" onclick="toggleApology()">
+for you
+</button>
+
+<div class="apology" id="apologyBox">
+<h2>my apology</h2>
+<div class="card">
+MY HABIBI<br><br>
+
+I’ve been doing a lot of thinking, and one thing I’ve realized is that I didn’t take enough responsibility for how I showed up with you. I can see now that I wasn’t as emotionally supportive or understanding as I should’ve been, and I understand why that hurt you.
+
+<br><br>You’re someone who notices things, who feels things, and who expects honesty and accountability and I didn’t meet you there. Its all my fault.
+
+At the same time, I see you more clearly now. I see how strong you’ve been, especially with everything going on around you. Even when things aren’t right, you still carry yourself in a way that stands out. I don’t think I ever really said that properly before.
+
+<br><br>You didn’t deserve to feel ignored or unsupported by me. You deserved someone who actually saw you and responded with care, and I regret that I didn’t do that the way I should have.
+
+I’m not sending this to force anything or expect a reply. I just wanted to finally acknowledge you properly, and take responsibility for all my wrong doings.
+
+<br><br>Kea tseba its too late but im working on myself to become a better person. i regret everyday
+for everything i did that hurt you. Ke soabile fela le hore i never saw the signs that you needed 
+me more than ever and kao etsa wi kutloe ole a villain ke kopa u ntshoarele.  
+<br><br>And I’m very sorry,
+Sano.
+</div>
+</div>
+</section>
+
+<div class="final-message" id="finalMessage">
+if this reached you… that’s enough.  
+I just hope you felt seen, even for a moment.
+</div>
+
+</div>
+
+<footer>made with honesty.</footer>
+
+<script>
+/* TYPING */
+const text = "hey… I just needed you to hear this.";
+let i = 0;
+
+function typeWriter() {
+    if (i < text.length) {
+        document.getElementById("typing").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, 50);
+    } else {
+        setTimeout(() => {
+            document.querySelector(".intro").style.display = "none";
+            document.getElementById("main").style.display = "block";
+        }, 800);
+    }
+}
+typeWriter();
+
+/* SCROLL REVEAL */
+const sections = document.querySelectorAll("section");
+const finalMsg = document.getElementById("finalMessage");
+
+window.addEventListener("scroll", () => {
+    sections.forEach(sec => {
+        if (sec.getBoundingClientRect().top < window.innerHeight - 80) {
+            sec.classList.add("show");
+        }
+    });
+
+    if (finalMsg.getBoundingClientRect().top < window.innerHeight - 50) {
+        finalMsg.classList.add("show");
+    }
+});
+
+/* SLIDESHOW */
+document.querySelectorAll(".image").forEach(group => {
+    let images = group.querySelectorAll("img");
+    let index = 0;
+    let interval = null;
+
+    function start() {
+        if (interval) return;
+        interval = setInterval(() => {
+            images[index].classList.remove("active");
+            index = (index + 1) % images.length;
+            images[index].classList.add("active");
+        }, 5000);
+    }
+
+    function stop() {
+        clearInterval(interval);
+        interval = null;
+    }
+
+    new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) start();
+            else stop();
+        });
+    }, { threshold: 0.4 }).observe(group);
+});
+
+/* APOLOGY TOGGLE */
+function toggleApology() {
+    document.getElementById("apologyBox").classList.toggle("show");
+}
+
+/* MUSIC */
+const music = document.getElementById("bg-music");
+
+document.addEventListener("click", () => {
+    music.volume = 0;
+    music.play();
+
+    let vol = 0;
+    const fade = setInterval(() => {
+        if (vol < 0.15) {
+            vol += 0.01;
+            music.volume = vol;
+        } else clearInterval(fade);
+    }, 200);
+}, { once: true });
+
+function toggleMusic() {
+    if (music.paused) {
+        music.play();
+        document.getElementById("music-btn").innerText = "pause";
+    } else {
+        music.pause();
+        document.getElementById("music-btn").innerText = "play";
+    }
+}
+</script>
+
+</body>
+</html>
